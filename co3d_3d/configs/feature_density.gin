@@ -1,0 +1,3 @@
+# use densities as input features
+Co3DDatasetBase.features = ['density']
+get_model.in_channel = 1

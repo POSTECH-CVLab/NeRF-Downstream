@@ -1,0 +1,14 @@
+
+Co3DDatasetBase.train_transformations = [
+    "RandomRotation",
+    "CoordinateDropout",
+    "RandomHorizontalFlip",
+    "CoordinateUniformTranslation",
+    "RandomScale",
+]
+
+# Data augmentation
+RandomRotation.upright_axis = "y"
+RandomHorizontalFlip.upright_axis = "y"
+CoordinateUniformTranslation.max_translation = 0.2
+RandomScale.scale_ratio = 0.30

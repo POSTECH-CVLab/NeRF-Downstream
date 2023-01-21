@@ -1,0 +1,87 @@
+# Dataset
+get_dataset.dataset_name = "ScannetDataset"
+
+# Scannet dataset
+ScannetDataset.data_root = "./datasets/scannet/"
+ScannetDataset.voxel_size = 0.02  # in meter
+ScannetDataset.train_transformations = [
+    "RandomRotation",
+    "RandomCrop",
+    "RandomAffine", # affine to rotate the rectangular crop
+    "CoordinateDropout",
+    "ChromaticTranslation",
+    "ChromaticJitter",
+    "RandomHorizontalFlip",
+    "RandomTranslation",
+    "ElasticDistortion",
+    "NormalizeColor",
+]
+ScannetDataset.eval_transformations = [
+    "NormalizeColor",
+]
+
+# Data augmentation
+# 1 (m) / 0.02(m / voxel) = 50 voxels
+RandomCrop.x = 250  # 5m
+RandomCrop.y = 250  # 5m
+RandomCrop.z = 250  # 5m
+
+RandomHorizontalFlip.upright_axis = "z"
+RandomAffine.upright_axis = "z"
+RandomAffine.application_ratio = 0.7
+ChromaticJitter.std = 0.01
+ChromaticJitter.application_ratio = 0.7
+ElasticDistortion.distortion_params = [(4, 16)]
+ElasticDistortion.application_ratio = 0.7
+
+get_model.name = "Res16UNet"
+get_model.in_channel = 3
+get_model.out_channel = 20
+
+# Training
+train.max_epochs = -1
+train.max_steps = 60000
+train.warmup_steps = -1
+train.log_every_n_steps = 10
+train.val_every_n_steps = 400
+train.project_name = "segmentation-scannet"
+train.loggers = ["csv", "wandb"]
+
+train.batch_size = 8
+train.val_batch_size = 2
+train.lr = 1e-1
+train.weight_decay = 1e-4
+train.optimizer_name = "SGD"
+train.scheduler_name = "PolyLR"
+train.train_num_workers = 8
+train.val_num_workers = 4
+
+SGD.momentum = 0.9
+
+PolyLR.poly_exp = 0.9
+
+logged.hyper_params = [
+    "train.max_steps",
+    "train.warmup_steps",
+    "train.val_every_n_steps",
+    "train.gpus",
+    "get_model.name",
+    "Res16UNet.NORM_TYPE",
+    "get_dataset.dataset_name",
+    "train.batch_size",
+    "train.val_batch_size",
+    "train.optimizer_name",
+    "train.scheduler_name",
+    "train.lr",
+    "train.weight_decay",
+    "train.use_sync_batchnorm",
+    "train.use_sync_grad",
+    "ScannetDataset.voxel_size",
+    "ScannetDataset.train_transformations",
+    "ScannetDataset.eval_transformations",
+    "RandomCrop.x",
+    "RandomCrop.y",
+    "RandomCrop.z",
+    "PolyLR.poly_exp",
+    "SGD.momentum",
+]

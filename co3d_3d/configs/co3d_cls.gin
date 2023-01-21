@@ -1,0 +1,60 @@
+# Dataset
+get_dataset.dataset_name = "Co3DDataset"
+
+# Co3DDatasetBase setting
+Co3DDatasetBase.data_root = "./co3d_3d/datasets/co3d"
+Co3DDatasetBase.downsample_stride = 2
+Co3DDatasetBase.downsample_mode = 1
+Co3DDatasetBase.features = ["sh"]
+Co3DDatasetBase.train_transformations = []
+Co3DDatasetBase.eval_transformations = []
+
+# Model
+get_model.in_channel = 27
+get_model.out_channel = 51
+get_model.name = "ResNet14"
+
+# Training
+train.training_module = "ClassificationTraining"
+train.max_steps = 200000
+train.max_epochs = -1
+train.scheduler_interval = 'step'
+train.warmup_steps = -1
+train.log_every_n_steps = 10
+train.project_name = "co3d-classification"
+train.loggers = ["csv", "neptune"]
+train.val_phase = "val"
+
+train.batch_size = 16
+train.val_batch_size = 8
+train.collate_func_name = "collate_mink"
+train.lr = 1e-1
+train.weight_decay = 1e-4
+train.optimizer_name = "SGD"
+train.scheduler_name = "CosineAnnealingLR"
+train.train_num_workers = 8
+train.val_num_workers = 4
+train.monitor_metric = "val/acc1"
+
+SGD.momentum = 0.9
+
+logged.hyper_params = [
+    "get_model.name",
+    "get_model.in_channel",
+    "get_model.out_channel",
+    "get_dataset.dataset_name",
+    "train.max_steps",
+    "train.warmup_steps",
+    "train.gpus",
+    "train.batch_size",
+    "train.val_batch_size",
+    "train.optimizer_name",
+    "train.scheduler_name",
+    "train.lr",
+    "train.weight_decay",
+    "SGD.momentum",
+    "Co3DDatasetBase.voxel_size",
+    "Co3DDatasetBase.downsample_stride",
+    "Co3DDatasetBase.features",
+    "Co3DDatasetBase.train_transformations",
+]

@@ -1,0 +1,3 @@
+LitModel.model_name = "resnet152"
+run.run_name = "co3d_resnet152_pretrained"
+ResNetBased.pretrained=True

@@ -1,0 +1,9 @@
+
+Co3DDatasetBase.train_transformations = [
+    "CoordinateUniformTranslation",
+    "RandomScale",
+]
+
+# Data augmentation
+CoordinateUniformTranslation.max_translation = 0.2
+RandomScale.scale_ratio = 0.20

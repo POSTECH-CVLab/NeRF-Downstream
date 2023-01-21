@@ -1,0 +1,7 @@
+
+Co3DDatasetBase.train_transformations = [
+    "VoxelDownsampleSimple"
+]
+Co3DDatasetBase.eval_transformations = [
+    "VoxelDownsampleSimple"
+]

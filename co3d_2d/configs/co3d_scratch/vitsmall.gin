@@ -1,0 +1,2 @@
+LitModel.model_name = "vit_small_patch16_224"
+run.run_name = "co3d_vitsmall_scratch"

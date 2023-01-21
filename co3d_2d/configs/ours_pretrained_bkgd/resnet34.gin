@@ -1,0 +1,8 @@
+LitModel.model_name = "resnet34"
+run.run_name = "co3d_perfception_resnet34_pretrained_bkgd"
+ResNetBased.pretrained=True
+
+DataModule.train_co3d = False
+DataModule.eval_co3d = False
+
+PeRFCeptionCo3DTrainDataset.bkgd_aug = 0.5

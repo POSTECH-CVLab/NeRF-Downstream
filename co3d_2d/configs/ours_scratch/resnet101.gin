@@ -1,0 +1,5 @@
+LitModel.model_name = "resnet101"
+run.run_name = "co3d_perfception_resnet101_scratch"
+
+DataModule.train_co3d = False
+DataModule.eval_co3d = False

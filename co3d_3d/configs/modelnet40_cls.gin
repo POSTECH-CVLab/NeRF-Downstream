@@ -1,0 +1,65 @@
+# Dataset
+get_dataset.dataset_name = "ModelNet40H5Dataset"
+
+# ModelNet40H5 setting
+ModelNet40H5Dataset.data_root = "./datasets/modelnet40_ply_hdf5_2048/"
+ModelNet40H5Dataset.voxel_size = 0.05  # in meter
+ModelNet40H5Dataset.train_transformations = ["CoordinateUniformTranslation", "RandomScale", "CoordinateDropout"]
+ModelNet40H5Dataset.eval_transformations = []
+
+# Data augmentation
+RandomHorizontalFlip.upright_axis = "z"
+RandomAffine.upright_axis = "z"
+RandomAffine.application_ratio = 0.7
+RandomRotation.upright_axis = "z"
+RandomScale.scale_ratio = 0.05
+PerlinNoise.noise_params = [(4, 4), (16, 16)]
+PerlinNoise.application_ratio = 0.7
+CoordinateUniformTranslation.max_translation = 0.2
+
+get_model.in_channel = 3
+get_model.out_channel = 40
+get_model.name = "MinkowskiFCNN"
+
+# Training
+train.training_module = "ClassificationTraining"
+train.max_steps = 100000
+train.warmup_steps = -1
+train.log_every_n_steps = 10
+train.val_every_n_steps = 500
+train.project_name = "modelnet40-classification"
+train.loggers = ["csv", "wandb"]
+train.val_phase = "val"
+
+train.batch_size = 32
+train.val_batch_size = 16
+train.lr = 1e-1
+train.weight_decay = 1e-4
+train.optimizer_name = "SGD"
+train.scheduler_name = "CosineAnnealingLR"
+train.train_num_workers = 8
+train.val_num_workers = 4
+train.monitor_metric = "val/acc1"
+
+SGD.momentum = 0.9
+
+StepLR.step_size = 400000
+
+PolyLR.poly_exp = 0.9
+
+logged.hyper_params = [
+    "train.max_steps",
+    "train.warmup_steps",
+    "train.val_every_n_steps",
+    "train.gpus",
+    "get_model.name",
+    "get_dataset.dataset_name",
+    "train.batch_size",
+    "train.optimizer_name",
+    "train.scheduler_name",
+    "train.lr",
+    "train.weight_decay",
+    "ModelNet40H5Dataset.voxel_size",
+    "PolyLR.poly_exp",
+    "SGD.momentum",
+]

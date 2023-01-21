@@ -1,0 +1,6 @@
+LitModel.model_name = "resnet50"
+run.run_name = "co3d_perfception_resnet50_pretrained"
+ResNetBased.pretrained=True
+
+DataModule.train_co3d = False
+DataModule.eval_co3d = False

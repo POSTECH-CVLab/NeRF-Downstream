@@ -1,0 +1,3 @@
+# use ones as input features
+PlenoxelScannetDataset.features = ['ones']
+get_model.in_channel = 1

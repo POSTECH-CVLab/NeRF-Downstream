@@ -1,0 +1,6 @@
+LitModel.model_name = "resnext101_32x8d"
+run.run_name = "co3d_perfception_resnext101_pretrained"
+ResNetBased.pretrained=True
+
+DataModule.train_co3d = False
+DataModule.eval_co3d = False

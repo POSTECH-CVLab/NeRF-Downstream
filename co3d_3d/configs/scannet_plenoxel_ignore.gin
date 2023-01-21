@@ -1,0 +1,10 @@
+# Scannet dataset
+PlenoxelScannetDataset.valid_thres = 0.10
+PlenoxelScannetDataset.ignore_thres = 0.20
+PlenoxelScannetDataset.void_label = -1
+PlenoxelScannetDataset.ignore_label = -255
+
+get_model.in_channel = 27
+get_model.out_channel = 21
+
+train.void_weight = 0.1

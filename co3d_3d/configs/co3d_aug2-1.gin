@@ -1,0 +1,21 @@
+
+Co3DDatasetBase.downsample_stride = 1
+Co3DDatasetBase.train_transformations = [
+    "DensityBasedSample",
+    "RandomRotation",
+    "CoordinateDropout",
+    "RandomHorizontalFlip",
+    "CoordinateUniformTranslation",
+    "RandomScale",
+]
+Co3DDatasetBase.eval_transformations = [
+    "DensityBasedSample"
+]
+
+# Data augmentation
+DensityBasedSample.percentile = 0.95
+DensityBasedSample.density_dim = 3
+RandomRotation.upright_axis = "y"
+RandomHorizontalFlip.upright_axis = "y"
+CoordinateUniformTranslation.max_translation = 0.2
+RandomScale.scale_ratio = 0.30

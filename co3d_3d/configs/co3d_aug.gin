@@ -1,0 +1,14 @@
+
+Co3DDatasetBase.train_transformations = [
+    "VoxelDownsampleSimple",
+    "CoordinateUniformTranslation",
+    "RandomScale",
+]
+Co3DDatasetBase.eval_transformations = [
+    "VoxelDownsampleSimple"
+]
+
+# Data augmentation
+VoxelDownsampleSimple.stride = 2
+CoordinateUniformTranslation.max_translation = 0.2
+RandomScale.scale_ratio = 0.20

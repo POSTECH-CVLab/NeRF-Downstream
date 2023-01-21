@@ -1,0 +1,8 @@
+LitModel.model_name = "vit_base_patch16_224"
+run.run_name = "co3d_perfception_vitbase_pretrained_bkgd_full"
+ViTBased.pretrained=True
+
+DataModule.train_co3d = False
+DataModule.eval_co3d = False
+
+PeRFCeptionCo3DTrainDataset.bkgd_aug = 1.0

@@ -1,0 +1,102 @@
+# Dataset
+get_dataset.dataset_name = "PlenoxelScannetDataset"
+
+# Scannet dataset
+PlenoxelScannetDataset.data_root = "./co3d_3d/datasets/perfception-scannet"
+PlenoxelScannetDataset.train_transformations = [
+    "RandomRotation",
+    "RandomCrop",
+    "RandomAffine", # affine to rotate the rectangular crop
+    "CoordinateDropout",
+    "RandomFeatureJitter",
+    "RandomHorizontalFlip",
+    "RandomTranslation",
+    "ElasticDistortion",
+]
+PlenoxelScannetDataset.eval_transformations = []
+PlenoxelScannetDataset.features = ['sh']
+PlenoxelScannetDataset.valid_thres = 0.05
+PlenoxelScannetDataset.ignore_thres = None
+PlenoxelScannetDataset.void_label = None
+PlenoxelScannetDataset.ignore_label = -255
+
+# Data augmentation
+# 1 (m) / 0.02(m / voxel) = 50 voxels
+RandomCrop.x = 200  # 5m
+RandomCrop.y = 200  # 5m
+RandomCrop.z = 200  # 5m
+
+RandomRotation.upright_axis = "y"
+RandomHorizontalFlip.upright_axis = "y"
+RandomAffine.upright_axis = "y"
+RandomAffine.application_ratio = 0.7
+ChromaticJitter.std = 0.01
+ChromaticJitter.application_ratio = 0.7
+ElasticDistortion.distortion_params = [(4, 16)]
+ElasticDistortion.application_ratio = 0.7
+
+get_model.name = "Res16UNet"
+get_model.in_channel = 27
+get_model.out_channel = 20
+
+# Training
+train.max_steps = 60000
+train.max_epochs = -1
+train.scheduler_interval = 'step'
+train.warmup_steps = -1
+train.log_every_n_steps = 10
+train.val_every_n_steps = 400
+train.project_name = "segmentation-plenoxel-scannet"
+train.loggers = ["csv", "wandb"]
+train.ignore_label = -255
+
+train.batch_size = 8
+train.val_batch_size = 2
+train.lr = 1e-1
+train.weight_decay = 1e-4
+train.optimizer_name = "SGD"
+train.scheduler_name = "CosineAnnealingLR"
+train.train_num_workers = 8
+train.val_num_workers = 4
+train.test_phase = "val"
+
+SGD.momentum = 0.9
+
+logged.hyper_params = [
+    "train.max_steps",
+    "train.warmup_steps",
+    "train.val_every_n_steps",
+    "train.gpus",
+    "get_model.name",
+    "get_model.in_channel",
+    "get_model.out_channel",
+    "Res16UNet.NORM_TYPE",
+    "get_dataset.dataset_name",
+    "train.batch_size",
+    "train.val_batch_size",
+    "train.optimizer_name",
+    "train.scheduler_name",
+    "train.lr",
+    "train.weight_decay",
+    "train.ignore_label",
+    "PlenoxelScannetDataset.train_transformations",
+    "PlenoxelScannetDataset.eval_transformations",
+    "PlenoxelScannetDataset.downsample_stride",
+    "PlenoxelScannetDataset.features",
+    "PlenoxelScannetDataset.valid_thres",
+    "PlenoxelScannetDataset.ignore_thres",
+    "PlenoxelScannetDataset.void_label",
+    "PlenoxelScannetDataset.ignore_label",
+    "RandomRotation.upright_axis",
+    "RandomHorizontalFlip.upright_axis",
+    "RandomAffine.upright_axis",
+    "RandomAffine.application_ratio",
+    "ChromaticJitter.std",
+    "ChromaticJitter.application_ratio",
+    "ElasticDistortion.distortion_params",
+    "ElasticDistortion.application_ratio",
+    "RandomCrop.x",
+    "RandomCrop.y",
+    "RandomCrop.z",
+    "SGD.momentum",
+]

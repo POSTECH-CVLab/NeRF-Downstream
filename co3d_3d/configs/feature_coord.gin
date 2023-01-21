@@ -1,0 +1,3 @@
+# use coordinates as input features
+Co3DDatasetBase.features = ['xyzs']
+get_model.in_channel = 3

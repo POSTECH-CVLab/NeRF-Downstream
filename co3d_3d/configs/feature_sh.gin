@@ -1,0 +1,3 @@
+# use sh coefficients as input features
+Co3DDatasetBase.features = ['sh']
+get_model.in_channel = 27

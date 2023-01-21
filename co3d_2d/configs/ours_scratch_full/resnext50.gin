@@ -1,0 +1,7 @@
+LitModel.model_name = "resnext50_32x4d"
+run.run_name = "co3d_perfception_resnext50_scratch_bkgd_full"
+
+DataModule.train_co3d = False
+DataModule.eval_co3d = False
+
+PeRFCeptionCo3DTrainDataset.bkgd_aug = 1.0

@@ -1,0 +1,3 @@
+# use ones as input features
+PlenoxelScannetDataset.features = ['sh']
+get_model.in_channel = 27

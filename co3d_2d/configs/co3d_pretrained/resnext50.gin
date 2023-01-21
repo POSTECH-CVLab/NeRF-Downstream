@@ -1,0 +1,3 @@
+LitModel.model_name = "resnext50_32x4d"
+run.run_name = "co3d_resnext50_pretrained"
+ResNetBased.pretrained=True

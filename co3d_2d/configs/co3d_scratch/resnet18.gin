@@ -1,0 +1,2 @@
+LitModel.model_name = "resnet18"
+run.run_name = "co3d_resnet18_scratch"

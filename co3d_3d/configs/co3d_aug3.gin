@@ -1,0 +1,23 @@
+
+Co3DDatasetBase.train_transformations = [
+    "RandomRotation",
+    "RandomAffine",
+    "CoordinateDropout",
+    "RandomHorizontalFlip",
+    "CoordinateUniformTranslation",
+    "CoordinateJitter",
+    "RandomScale",
+    "RandomFeatureJitter",
+]
+
+# Data augmentation
+DensityBasedSample.percentile = 0.95
+DensityBasedSample.density_dim = 3
+RandomRotation.upright_axis = "y"
+RandomAffine.upright_axis = "y"
+CoordinateDropout.application_ratio = 0.9
+RandomHorizontalFlip.upright_axis = "y"
+CoordinateUniformTranslation.max_translation = 0.2
+RandomScale.scale_ratio = 0.40
+RandomFeatureJitter.start_ind = 4
+RandomFeatureJitter.feature_dim = 27
